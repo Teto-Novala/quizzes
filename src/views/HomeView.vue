@@ -1,9 +1,16 @@
-<script setup>
-import Button from "@/components/Button.vue";
-</script>
-
 <template>
   <main class="flex justify-center">
-    <Button>Type 1</Button>
+    <Input
+      type="email"
+      label="Email Address"
+    />
+    <Input
+      type="password"
+      label="Password"
+    />
   </main>
 </template>
+
+<script setup>
+import Input from "@/components/Input.vue";
+</script>
