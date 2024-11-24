@@ -7,6 +7,10 @@ export default {
         primary: ["Poppins", "sans-serif"],
         secondary: ["Roboto", "sans-serif"],
       },
+      colors: {
+        primary: "#FCC822",
+        secondary: "#333",
+      },
     },
   },
   plugins: [],
