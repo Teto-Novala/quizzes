@@ -11,17 +11,20 @@
   >
     <p class="text-slate-500">{{ label }}</p>
     <input
-      type="text"
+      :type="type"
       class="outline-none border-b border-slate-50 text-primary w-full"
       @focus="isFocused = true"
       @blur="isFocused = false"
       ref="inputRef"
+      v-model="model"
     />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+
+const model = defineModel("model");
 
 const isFocused = ref(false);
 const inputRef = ref(null);
