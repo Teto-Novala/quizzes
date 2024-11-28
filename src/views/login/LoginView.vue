@@ -184,12 +184,13 @@ const submitHandler = async () => {
         "http://localhost:5000/api/auth/login",
         formData
       );
-      toast.success("Berhasil Login", {
-        onClose: () => {
-          store.user = response.data;
-          router.push("/");
-        },
-      });
+      toast.success("Berhasil Login");
+      store.user = await response.data;
+      if (store.data.user.role === "tutor") {
+        router.push("/dashboard");
+        return;
+      }
+      router.push("/");
     } catch (error) {
       toast.error(error.response.data.message);
     }

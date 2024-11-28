@@ -10,7 +10,7 @@
     />
     <div
       @click="hamburgerHandler"
-      v-if="Object.keys(store.user).length"
+      v-if="Object.keys(store.data).length"
       class="w-fit flex flex-col justify-center items-center gap-y-1"
     >
       <span class="w-6 block h-[.2rem] bg-black"></span>
@@ -28,7 +28,7 @@
     class="bg-primary w-full flex flex-col gap-y-4 py-4 items-center text-xl mt-5 text-center"
   >
     <div
-      v-if="store.user.role === 'tutor'"
+      v-if="store.data.user.role === 'tutor'"
       class="w-full"
     >
       <div
@@ -60,7 +60,7 @@
       </div>
     </div>
     <RouterLink
-      v-if="store.user.role === 'tutor'"
+      v-if="store.data.user.role === 'tutor'"
       class="flex-1 hover:underline w-full"
       >Nilai Siswa</RouterLink
     >
@@ -86,7 +86,7 @@
       src="/src/assets/images/components/profil.svg"
       alt="profil"
       class="cursor-pointer"
-      v-if="Object.keys(store.user).length"
+      v-if="Object.keys(store.data).length"
       @click="profilHandler"
     />
     <Button v-else>Login</Button>
@@ -105,7 +105,7 @@
       src="/src/assets/images/components/profil.svg"
       alt="profil"
       class="w-6 cursor-pointer"
-      v-if="Object.keys(store.user).length"
+      v-if="Object.keys(store.data).length"
       @click="profilHandler"
     />
     <Button v-else>Login</Button>
