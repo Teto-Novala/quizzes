@@ -27,7 +27,10 @@
     v-if="isActiveToggle"
     class="bg-primary w-full flex flex-col gap-y-4 py-4 items-center text-xl mt-5 text-center"
   >
-    <div class="w-full">
+    <div
+      v-if="store.user.role === 'tutor'"
+      class="w-full"
+    >
       <div
         @click="soalHandler"
         class="flex-1 flex items-center justify-center gap-x-4 hover:underline w-full"
@@ -56,7 +59,16 @@
         >
       </div>
     </div>
-    <RouterLink class="flex-1 hover:underline w-full">Nilai Siswa</RouterLink>
+    <RouterLink
+      v-if="store.user.role === 'tutor'"
+      class="flex-1 hover:underline w-full"
+      >Nilai Siswa</RouterLink
+    >
+    <RouterLink
+      v-else
+      class="flex-1 hover:underline w-full"
+      >Histori</RouterLink
+    >
     <RouterLink class="flex-1 hover:underline w-full">Pengaturan</RouterLink>
   </div>
   <!-- mobile end -->
@@ -73,12 +85,32 @@
     <img
       src="/src/assets/images/components/profil.svg"
       alt="profil"
+      class="cursor-pointer"
       v-if="Object.keys(store.user).length"
       @click="profilHandler"
     />
     <Button v-else>Login</Button>
   </nav>
   <!-- tablet end -->
+  <!-- desktop start -->
+  <nav
+    class="hidden xl:flex justify-between px-8 items-center font-primary w-full border-b border-slate-300 py-5"
+  >
+    <img
+      src="/src/assets/images/components/logo.svg"
+      alt="logo"
+      class="w-1/6 object-cover object-center"
+    />
+    <img
+      src="/src/assets/images/components/profil.svg"
+      alt="profil"
+      class="w-6 cursor-pointer"
+      v-if="Object.keys(store.user).length"
+      @click="profilHandler"
+    />
+    <Button v-else>Login</Button>
+  </nav>
+  <!-- desktop end -->
 </template>
 
 <script setup>
