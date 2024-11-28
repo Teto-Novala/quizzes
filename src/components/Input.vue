@@ -9,10 +9,10 @@
       }`,
     ]"
   >
-    <p class="text-slate-500">{{ label }}</p>
+    <p class="text-slate-500 md:text-lg">{{ label }}</p>
     <input
       :type="type"
-      class="outline-none border-b border-slate-50 text-primary w-full"
+      class="outline-none border-b border-slate-50 text-primary w-full md:text-lg"
       @focus="isFocused = true"
       @blur="isFocused = false"
       ref="inputRef"
