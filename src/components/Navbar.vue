@@ -1,5 +1,8 @@
 <template>
-  <nav class="flex justify-between items-center w-full px-8 font-primary">
+  <!-- mobile start -->
+  <nav
+    class="flex md:hidden justify-between items-center w-full px-8 font-primary"
+  >
     <img
       src="/src/assets/images/components/logo.svg"
       alt="log"
@@ -7,7 +10,7 @@
     />
     <div
       @click="hamburgerHandler"
-      v-if="store.user"
+      v-if="Object.keys(store.user).length"
       class="w-fit flex flex-col justify-center items-center gap-y-1"
     >
       <span class="w-6 block h-[.2rem] bg-black"></span>
@@ -56,6 +59,26 @@
     <RouterLink class="flex-1 hover:underline w-full">Nilai Siswa</RouterLink>
     <RouterLink class="flex-1 hover:underline w-full">Pengaturan</RouterLink>
   </div>
+  <!-- mobile end -->
+
+  <!-- tablet start -->
+  <nav
+    class="hidden md:flex xl:hidden justify-between px-8 items-center font-primary w-full border-b border-slate-300 py-5"
+  >
+    <img
+      src="/src/assets/images/components/logo.svg"
+      alt="logo"
+      class="w-1/3 object-cover object-center"
+    />
+    <img
+      src="/src/assets/images/components/profil.svg"
+      alt="profil"
+      v-if="Object.keys(store.user).length"
+      @click="profilHandler"
+    />
+    <Button v-else>Login</Button>
+  </nav>
+  <!-- tablet end -->
 </template>
 
 <script setup>
@@ -76,6 +99,10 @@ const hamburgerHandler = () => {
 
 const soalHandler = () => {
   isActiveSoal.value = !isActiveSoal.value;
+};
+
+const profilHandler = () => {
+  router.push("/profil");
 };
 
 const loginHandler = () => {
