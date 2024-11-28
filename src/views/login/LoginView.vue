@@ -185,14 +185,14 @@ const submitHandler = async () => {
         formData
       );
       toast.success("Berhasil Login");
-      store.user = await response.data;
+      store.data = await response.data;
       if (store.data.user.role === "tutor") {
-        router.push("/dashboard");
+        router.push("/tutor/dashboard");
         return;
       }
       router.push("/");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response);
     }
   } else {
     toast.error(v$.value.$errors[0].$message);

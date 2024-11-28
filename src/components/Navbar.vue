@@ -69,7 +69,11 @@
       class="flex-1 hover:underline w-full"
       >Histori</RouterLink
     >
-    <RouterLink class="flex-1 hover:underline w-full">Pengaturan</RouterLink>
+    <RouterLink
+      :to="`${routeHandler()}`"
+      class="flex-1 hover:underline w-full"
+      >Profil</RouterLink
+    >
   </div>
   <!-- mobile end -->
 
@@ -134,7 +138,20 @@ const soalHandler = () => {
 };
 
 const profilHandler = () => {
+  if (store.data.user.role === "tutor") {
+    router.push("/tutor/profil");
+    return;
+  }
+
   router.push("/profil");
+};
+
+const routeHandler = () => {
+  if (store.data.user.role === "tutor") {
+    return "/tutor/profil";
+  } else {
+    return "/profil";
+  }
 };
 
 const loginHandler = () => {

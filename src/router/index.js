@@ -5,6 +5,11 @@ import RegisterView from "@/views/register/RegisterView.vue";
 import WithNav from "@/components/WithNav.vue";
 import WithNavSide from "@/components/WithNavSide.vue";
 import DashboardView from "@/views/dashboard/DashboardView.vue";
+import ProfilView from "@/views/profil/ProfilView.vue";
+import BuatView from "@/views/soal/buat/BuatView.vue";
+import EditView from "@/views/soal/edit/EditView.vue";
+import HapusView from "@/views/soal/hapus/HapusView.vue";
+import EditProfileView from "@/views/profil/edit/EditProfileView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +35,21 @@ const router = createRouter({
           name: "dashboard",
           component: DashboardView,
         },
+        {
+          path: "buatsoal",
+          name: "buat-soal",
+          component: BuatView,
+        },
+        {
+          path: "editsoal",
+          name: "edit-soal",
+          component: EditView,
+        },
+        {
+          path: "hapussoal",
+          name: "hapus-soal",
+          component: HapusView,
+        },
       ],
     },
     {
@@ -41,6 +61,22 @@ const router = createRouter({
       path: "/register",
       name: "register",
       component: RegisterView,
+    },
+    {
+      path: "/tutor/profil",
+      component: WithNavSide,
+      children: [
+        {
+          path: "",
+          name: "profil",
+          component: ProfilView,
+        },
+        {
+          path: "edit",
+          name: "edit-profil",
+          component: EditProfileView,
+        },
+      ],
     },
   ],
 });
