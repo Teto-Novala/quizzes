@@ -33,7 +33,11 @@
             type="submit"
             >Login</Button
           >
-          <Button class="flex-1">Register</Button>
+          <Button
+            @click="registerHandler"
+            class="flex-1"
+            >Register</Button
+          >
         </div>
       </form>
     </section>
@@ -71,7 +75,11 @@
             type="submit"
             >Login</Button
           >
-          <Button class="flex-1">Register</Button>
+          <Button
+            @click="registerHandler"
+            class="flex-1"
+            >Register</Button
+          >
         </div>
       </form>
     </section>
@@ -112,7 +120,11 @@
               type="submit"
               >Login</Button
             >
-            <Button class="flex-1">Register</Button>
+            <Button
+              @click="registerHandler"
+              class="flex-1"
+              >Register</Button
+            >
           </div>
         </form>
       </div>
@@ -133,8 +145,13 @@ import { computed, reactive } from "vue";
 import { required, helpers, email } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import { useToast } from "vue-toastification";
+import axios from "axios";
+import { useRouter } from "vue-router";
+import { useUserStore } from "@/stores/user";
 
+const store = useUserStore();
 const toast = useToast();
+const router = useRouter();
 
 const formData = reactive({
   email: "",
@@ -155,10 +172,27 @@ const rules = computed(() => {
 
 const v$ = useVuelidate(rules, formData);
 
+const registerHandler = () => {
+  router.push("/register");
+};
+
 const submitHandler = async () => {
   const result = await v$.value.$validate();
   if (result) {
-    alert("test");
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData
+      );
+      toast.success("Berhasil Login", {
+        onClose: () => {
+          store.user = response.data;
+          router.push("/");
+        },
+      });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   } else {
     toast.error(v$.value.$errors[0].$message);
   }
