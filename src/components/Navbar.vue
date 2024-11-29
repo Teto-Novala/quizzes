@@ -48,13 +48,19 @@
         v-if="isActiveSoal"
         class="flex flex-col w-full mt-4"
       >
-        <RouterLink class="w-full hover:bg-white transition-all p-4"
+        <RouterLink
+          to="/tutor/buatsoal"
+          class="w-full hover:bg-white transition-all p-4"
           >Buat Soal</RouterLink
         >
-        <RouterLink class="w-full hover:bg-white transition-all p-4"
+        <RouterLink
+          to="/tutor/editsoal"
+          class="w-full hover:bg-white transition-all p-4"
           >Edit Soal</RouterLink
         >
-        <RouterLink class="w-full hover:bg-white transition-all p-4"
+        <RouterLink
+          to="/tutor/hapussoal"
+          class="w-full hover:bg-white transition-all p-4"
           >Hapus Soal</RouterLink
         >
       </div>
