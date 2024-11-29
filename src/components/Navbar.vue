@@ -93,7 +93,11 @@
       v-if="Object.keys(store.data).length"
       @click="profilHandler"
     />
-    <Button v-else>Login</Button>
+    <Button
+      @click="loginHandler"
+      v-else
+      >Login</Button
+    >
   </nav>
   <!-- tablet end -->
   <!-- desktop start -->
@@ -112,7 +116,11 @@
       v-if="Object.keys(store.data).length"
       @click="profilHandler"
     />
-    <Button v-else>Login</Button>
+    <Button
+      @click="loginHandler"
+      v-else
+      >Login</Button
+    >
   </nav>
   <!-- desktop end -->
 </template>

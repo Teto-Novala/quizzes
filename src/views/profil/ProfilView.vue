@@ -20,7 +20,7 @@
       </div>
       <Button @click="editHandler">Edit</Button>
       <Button>Hapus Akun</Button>
-      <Button>Log Out</Button>
+      <Button @click="logOutHandler">Log Out</Button>
     </div>
     <!-- mobile end -->
     <!-- tablet start -->
@@ -73,6 +73,11 @@ import { useToast } from "vue-toastification";
 const store = useUserStore();
 const toast = useToast();
 const router = useRouter();
+
+const logOutHandler = () => {
+  store.$reset();
+  router.push("/login");
+};
 
 const editHandler = () => {
   router.push("/tutor/profil/edit");
