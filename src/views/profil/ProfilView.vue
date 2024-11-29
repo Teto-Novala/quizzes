@@ -19,7 +19,7 @@
         </p>
       </div>
       <Button @click="editHandler">Edit</Button>
-      <Button>Hapus Akun</Button>
+      <Button @click="hapusHandler">Hapus Akun</Button>
       <Button @click="logOutHandler">Log Out</Button>
     </div>
     <!-- mobile end -->
@@ -38,8 +38,7 @@
         </p>
       </div>
       <Button @click="editHandler">Edit</Button>
-      <Button>Hapus Akun</Button>
-      <Button>Log Out</Button>
+      <Button @click="hapusHandler">Hapus Akun</Button>
     </div>
     <!-- tablet end -->
     <!-- desktop start -->
@@ -57,7 +56,7 @@
         </p>
       </div>
       <Button @click="editHandler">Edit</Button>
-      <Button>Hapus Akun</Button>
+      <Button @click="hapusHandler">Hapus Akun</Button>
     </div>
     <!-- desktop end -->
   </main>
@@ -74,13 +73,17 @@ const store = useUserStore();
 const toast = useToast();
 const router = useRouter();
 
-const logOutHandler = () => {
-  store.$reset();
+const logOutHandler = async () => {
+  store.reset();
   router.push("/login");
 };
 
 const editHandler = () => {
   router.push("/tutor/profil/edit");
+};
+
+const hapusHandler = () => {
+  router.push("/tutor/profil/hapus");
 };
 
 onBeforeMount(() => {

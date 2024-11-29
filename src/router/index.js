@@ -10,6 +10,7 @@ import BuatView from "@/views/soal/buat/BuatView.vue";
 import EditView from "@/views/soal/edit/EditView.vue";
 import HapusView from "@/views/soal/hapus/HapusView.vue";
 import EditProfileView from "@/views/profil/edit/EditProfileView.vue";
+import DeleteProfilView from "@/views/profil/delete/DeleteProfilView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,6 +76,11 @@ const router = createRouter({
           path: "edit",
           name: "edit-profil",
           component: EditProfileView,
+        },
+        {
+          path: "hapus",
+          name: "hapus-profil",
+          component: DeleteProfilView,
         },
       ],
     },

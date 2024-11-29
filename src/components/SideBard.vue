@@ -119,7 +119,7 @@ const hapusSoalHandler = () => {
 };
 
 const logoutHandler = () => {
-  store.$reset;
+  store.reset();
   router.push("/login");
 };
 </script>
