@@ -1,7 +1,7 @@
 <template>
   <!-- tablet start -->
   <aside
-    class="bg-primary font-secondary h-auto flex flex-col gap-y-3 text-xl xl:text-lg py-4 w-1/4"
+    class="bg-primary font-secondary h-screen flex flex-col gap-y-3 text-xl xl:text-lg py-4 w-1/4"
   >
     <div>
       <div
