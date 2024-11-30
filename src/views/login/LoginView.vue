@@ -192,7 +192,7 @@ const submitHandler = async () => {
       }
       router.push("/");
     } catch (error) {
-      toast.error(error.response);
+      toast.error(error.response.data.message);
     }
   } else {
     toast.error(v$.value.$errors[0].$message);
