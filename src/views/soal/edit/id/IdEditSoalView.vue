@@ -153,7 +153,22 @@ const v$ = useVuelidate(rules, soal);
 const submitHandler = async () => {
   const result = await v$.value.$validate();
   if (result) {
-    console.log(soal);
+    try {
+      const response = await axios.put(
+        "http://localhost:5000/api/soal/update",
+        soal.value,
+        {
+          headers: {
+            Authorization: `Bearer ${store.data.token}`,
+          },
+        }
+      );
+      toast.success(response.data.message, {
+        onClose: () => window.location.reload(),
+      });
+    } catch (error) {
+      toast.error(error.response.data.message[0]);
+    }
   } else {
     toast.error(v$.value.$errors[0].$message);
   }
