@@ -1,5 +1,5 @@
 <template>
-  <main class="p-8">
+  <main class="p-8 xl:h-screen">
     <h1 class="font-secondary font-semibold text-center text-2xl mb-4">
       Edit Soal
     </h1>

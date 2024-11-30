@@ -1,5 +1,5 @@
 <template>
-  <main class="p-8">
+  <main class="p-8 xl:h-screen">
     <h1 class="text-center font-secondary font-semibold mb-4 text-xl">
       Model {{ route.params.no }}
     </h1>
@@ -11,6 +11,9 @@
       >
         <RouterLink
           v-for="(item, index) in listSoal"
+          :to="`/tutor/editsoal/model/${route.params.no}/soal/${index + 1}/${
+            item.id
+          }`"
           :key="index"
           class="bg-primary text-center p-5 rounded-lg border border-primary box-border transition-all hover:bg-white hover:text-black"
           >Soal {{ index + 1 }}</RouterLink
@@ -49,6 +52,7 @@ const fetchSoal = async () => {
         },
       }
     );
+
     listSoal.value = response.data;
   } catch (error) {
     toast.error("Terjadi Kesalahan", {

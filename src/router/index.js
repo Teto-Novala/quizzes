@@ -12,6 +12,7 @@ import HapusView from "@/views/soal/hapus/HapusView.vue";
 import EditProfileView from "@/views/profil/edit/EditProfileView.vue";
 import DeleteProfilView from "@/views/profil/delete/DeleteProfilView.vue";
 import ListSoalView from "@/views/soal/edit/soal-model/ListSoalView.vue";
+import IdEditSoalView from "@/views/soal/edit/id/IdEditSoalView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -93,6 +94,11 @@ const router = createRouter({
           path: ":no",
           name: "list-soal",
           component: ListSoalView,
+        },
+        {
+          path: ":no/soal/:nosoal/:id",
+          name: "edit-soal-id",
+          component: IdEditSoalView,
         },
       ],
     },
