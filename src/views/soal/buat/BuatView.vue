@@ -96,7 +96,7 @@ import { useUserStore } from "@/stores/user";
 import useVuelidate from "@vuelidate/core";
 import { helpers, required } from "@vuelidate/validators";
 import axios from "axios";
-import { computed, reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 
@@ -180,4 +180,14 @@ const submitHandler = async () => {
     toast.error(v$.value.$errors[0].$message);
   }
 };
+
+onMounted(() => {
+  if (!Object.keys(store.data).length) {
+    toast.error("Anda belum login", {
+      onClose: () => {
+        router.push("/login");
+      },
+    });
+  }
+});
 </script>
