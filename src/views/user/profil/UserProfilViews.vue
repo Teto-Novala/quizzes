@@ -37,6 +37,7 @@
             id="email"
             type="email"
             class="outline-none px-3 py-2 border border-slate-500 rounded-lg"
+            v-model="deleteForm.email"
           />
         </div>
         <div class="flex flex-col gap-y-1">
@@ -49,6 +50,7 @@
             id="password"
             type="password"
             class="outline-none px-3 py-2 border border-slate-500 rounded-lg"
+            v-model="deleteForm.password"
           />
         </div>
         <div class="flex gap-x-2 items-center w-full">
@@ -71,13 +73,37 @@
 <script setup>
 import Button from "@/components/Button.vue";
 import { useUserStore } from "@/stores/user";
-import { ref } from "vue";
+import useVuelidate from "@vuelidate/core";
+import { email, helpers, required } from "@vuelidate/validators";
+import axios from "axios";
+import { computed, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
 const store = useUserStore();
 const router = useRouter();
+const toast = useToast();
 
 const isHapus = ref(false);
+
+const deleteForm = reactive({
+  email: "",
+  password: "",
+});
+
+const rules = computed(() => {
+  return {
+    email: {
+      required: helpers.withMessage("Email tidak boleh kosong", required),
+      email: helpers.withMessage("Bukan format email", email),
+    },
+    password: {
+      required: helpers.withMessage("Password tidak boleh kosong", required),
+    },
+  };
+});
+
+const v$ = useVuelidate(rules, deleteForm);
 
 const edithandler = () => {};
 
@@ -86,13 +112,50 @@ const confirmHapusHandler = () => {
 };
 
 const kembaliHandler = () => {
+  deleteForm.email = "";
+  deleteForm.password = "";
   isHapus.value = false;
 };
 
-const hapusHandler = async () => {};
+const hapusHandler = async () => {
+  const result = await v$.value.$validate();
+  if (result) {
+    try {
+      const response = await axios.delete(
+        "http://localhost:5000/api/auth/delete",
+        {
+          data: {
+            email: deleteForm.email,
+            password: deleteForm.password,
+          },
+        }
+      );
+      await store.reset();
+      toast.success(response.data.message, {
+        onClose: () => {
+          router.push("/login");
+        },
+      });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  } else {
+    toast.error(v$.value.$errors[0].$message);
+  }
+};
 
 const logOutHandler = () => {
   store.reset();
   router.push("/");
 };
+
+onMounted(() => {
+  if (!Object.keys(store.data).length) {
+    toast.error("Anda belum login", {
+      onClose: () => {
+        router.push("/login");
+      },
+    });
+  }
+});
 </script>
