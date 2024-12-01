@@ -14,7 +14,11 @@
         <h2 class="text-slate-500 text-lg">
           Kami membantu mempersiapkan ujian
         </h2>
-        <Button class="w-full">Mulai Belajar</Button>
+        <Button
+          @click="mulaiHandler"
+          class="w-full"
+          >Mulai Tes</Button
+        >
       </div>
     </div>
     <!-- mobile end -->
@@ -32,7 +36,11 @@
         <h2 class="text-slate-500 text-xl">
           Kami membantu mempersiapkan ujian
         </h2>
-        <Button class="w-full">Mulai Belajar</Button>
+        <Button
+          @click="mulaiHandler"
+          class="w-full"
+          >Mulai Tes</Button
+        >
       </div>
     </div>
     <!-- tablet end -->
@@ -47,7 +55,7 @@
         <h2 class="text-slate-500 text-xl">
           Kami membantu mempersiapkan ujian
         </h2>
-        <Button>Mulai Belajar</Button>
+        <Button @click="mulaiHandler">Mulai Tes</Button>
       </div>
       <img
         src="/src/assets/images/home/hero.svg"
@@ -61,4 +69,11 @@
 
 <script setup>
 import Button from "@/components/Button.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const mulaiHandler = () => {
+  router.push("/ujian");
+};
 </script>

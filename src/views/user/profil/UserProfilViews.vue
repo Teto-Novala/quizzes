@@ -149,7 +149,7 @@ const hapusHandler = async () => {
 
 const logOutHandler = () => {
   store.reset();
-  router.push("/");
+  router.push("/login");
 };
 
 onBeforeMount(() => {

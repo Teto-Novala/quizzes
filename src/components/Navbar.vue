@@ -68,6 +68,20 @@
         </button>
       </div>
     </div>
+    <button
+      v-if="store.data.user.role === 'user'"
+      @click="homeHandler"
+      class="flex-1 hover:underline w-full"
+    >
+      Home
+    </button>
+    <button
+      v-if="store.data.user.role === 'user'"
+      @click="ujianHandler"
+      class="flex-1 hover:underline w-full"
+    >
+      Ujian
+    </button>
     <RouterLink
       v-if="store.data.user.role === 'tutor'"
       class="flex-1 hover:underline w-full"
@@ -102,6 +116,26 @@
       alt="logo"
       class="w-1/3 object-cover object-center"
     />
+    <div
+      v-if="store.data.user.role === 'user'"
+      class="flex items-center gap-x-3"
+    >
+      <RouterLink
+        class="transition-all hover:underline"
+        to="/"
+        >Home</RouterLink
+      >
+      <RouterLink
+        class="transition-all hover:underline"
+        to="/ujian"
+        >Ujian</RouterLink
+      >
+      <RouterLink
+        class="transition-all hover:underline"
+        to="/ujian"
+        >Histori</RouterLink
+      >
+    </div>
     <img
       src="/src/assets/images/components/profil.svg"
       alt="profil"
@@ -125,6 +159,26 @@
       alt="logo"
       class="w-1/6 object-cover object-center"
     />
+    <div
+      v-if="store.data.user.role === 'user'"
+      class="flex items-center gap-x-6"
+    >
+      <RouterLink
+        class="transition-all hover:underline"
+        to="/"
+        >Home</RouterLink
+      >
+      <RouterLink
+        class="transition-all hover:underline"
+        to="/ujian"
+        >Ujian</RouterLink
+      >
+      <RouterLink
+        class="transition-all hover:underline"
+        to="/ujian"
+        >Histori</RouterLink
+      >
+    </div>
     <img
       src="/src/assets/images/components/profil.svg"
       alt="profil"
@@ -200,5 +254,15 @@ const hapusHandler = () => {
 const logOutHandler = () => {
   store.reset();
   router.push("/login");
+};
+
+const homeHandler = () => {
+  isActiveToggle.value = false;
+  router.push("/");
+};
+
+const ujianHandler = () => {
+  isActiveToggle.value = false;
+  router.push("/ujian");
 };
 </script>
