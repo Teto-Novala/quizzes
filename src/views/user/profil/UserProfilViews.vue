@@ -76,6 +76,7 @@ import { useUserStore } from "@/stores/user";
 import useVuelidate from "@vuelidate/core";
 import { email, helpers, required } from "@vuelidate/validators";
 import axios from "axios";
+import { onBeforeMount } from "vue";
 import { computed, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
@@ -105,7 +106,9 @@ const rules = computed(() => {
 
 const v$ = useVuelidate(rules, deleteForm);
 
-const edithandler = () => {};
+const edithandler = () => {
+  router.push("/profil/edit");
+};
 
 const confirmHapusHandler = () => {
   isHapus.value = true;
@@ -149,7 +152,7 @@ const logOutHandler = () => {
   router.push("/");
 };
 
-onMounted(() => {
+onBeforeMount(() => {
   if (!Object.keys(store.data).length) {
     toast.error("Anda belum login", {
       onClose: () => {
