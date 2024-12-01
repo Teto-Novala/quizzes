@@ -1,5 +1,10 @@
 <template>
   <main class="p-8">
+    <Button
+      @click="backHandler"
+      class="mb-4"
+      >⬅</Button
+    >
     <h1 class="font-secondary font-semibold text-xl text-center mb-4">
       Soal {{ route.params.nosoal }}
     </h1>
@@ -208,4 +213,7 @@ onMounted(() => {
 
   fetchSoal();
 });
+const backHandler = () => {
+  router.back();
+};
 </script>

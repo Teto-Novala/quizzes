@@ -26,13 +26,13 @@
     <!-- tablet start -->
     <div class="hidden md:flex xl:hidden flex-col gap-y-5">
       <div class="flex flex-col gap-y-2">
-        <p class="text-2xl">Username</p>
+        <p class="text-xl">Username</p>
         <p class="text-xl border border-primary px-3 py-2 rounded-lg">
           {{ store.data.user.username }}
         </p>
       </div>
       <div class="flex flex-col gap-y-2">
-        <p class="text-2xl">Email</p>
+        <p class="text-xl">Email</p>
         <p class="text-xl border border-primary px-3 py-2 rounded-lg">
           {{ store.data.user.email }}
         </p>

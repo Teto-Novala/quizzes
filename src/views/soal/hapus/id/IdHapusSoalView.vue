@@ -1,5 +1,13 @@
 <template>
   <main class="p-8 md:h-screen xl:h-auto">
+    <Button
+      @click="backHandler"
+      class="mb-4"
+      >⬅</Button
+    >
+    <h1 class="font-secondary font-semibold text-xl text-center mb-4">
+      Soal {{ route.params.nosoal }}
+    </h1>
     <section v-if="Object.keys(soal).length">
       <form
         @submit.prevent="submitHandler"
@@ -209,4 +217,8 @@ onMounted(async () => {
     await fetchSoal();
   }
 });
+
+const backHandler = () => {
+  router.back();
+};
 </script>

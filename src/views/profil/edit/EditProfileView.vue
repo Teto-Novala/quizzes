@@ -52,7 +52,7 @@
     </div>
     <!-- tablet end -->
     <!-- desktop start -->
-    <div class="hidden xl:flex flex-col gap-y-4">
+    <div class="hidden h-screen xl:flex flex-col gap-y-4">
       <form
         @submit.prevent="submitHandler"
         class="w-full flex flex-col gap-y-3"
@@ -185,10 +185,13 @@ const passwordHandler = async () => {
               username: formData.username,
             }
           );
-          toast.success(response2.data.message);
+          toast.success(response2.data.message, {
+            onClose: () => {
+              window.location.reload();
+            },
+          });
           store.data.user = response2.data.user;
           isActive.value = false;
-          window.location.reload();
         } catch (error) {
           toast.error(error.response.data.message);
         }

@@ -48,21 +48,24 @@
         v-if="isActiveSoal"
         class="flex flex-col w-full mt-4"
       >
-        <RouterLink
-          to="/tutor/buatsoal"
+        <button
+          @click="buatHandler"
           class="w-full hover:bg-white transition-all p-4"
-          >Buat Soal</RouterLink
         >
-        <RouterLink
-          to="/tutor/editsoal"
+          Buat Soal
+        </button>
+        <button
+          @click="editHandler"
           class="w-full hover:bg-white transition-all p-4"
-          >Edit Soal</RouterLink
         >
-        <RouterLink
-          to="/tutor/hapussoal"
+          Edit Soal
+        </button>
+        <button
+          @click="hapusHandler"
           class="w-full hover:bg-white transition-all p-4"
-          >Hapus Soal</RouterLink
         >
+          Hapus Soal
+        </button>
       </div>
     </div>
     <RouterLink
@@ -75,11 +78,12 @@
       class="flex-1 hover:underline w-full"
       >Histori</RouterLink
     >
-    <RouterLink
-      :to="`${routeHandler()}`"
+    <button
+      @click="routeHandler"
       class="flex-1 hover:underline w-full"
-      >Profil</RouterLink
     >
+      Profil
+    </button>
   </div>
   <!-- mobile end -->
 
@@ -162,7 +166,8 @@ const profilHandler = () => {
 
 const routeHandler = () => {
   if (store.data.user.role === "tutor") {
-    return "/tutor/profil";
+    isActiveToggle.value = false;
+    router.push("/tutor/profil");
   } else {
     return "/profil";
   }
@@ -170,5 +175,18 @@ const routeHandler = () => {
 
 const loginHandler = () => {
   router.push("/login");
+};
+
+const buatHandler = () => {
+  isActiveToggle.value = false;
+  router.push("/tutor/buatsoal");
+};
+const editHandler = () => {
+  isActiveToggle.value = false;
+  router.push("/tutor/editsoal");
+};
+const hapusHandler = () => {
+  isActiveToggle.value = false;
+  router.push("/tutor/hapussoal");
 };
 </script>

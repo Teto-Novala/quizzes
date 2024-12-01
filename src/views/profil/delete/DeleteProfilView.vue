@@ -36,7 +36,7 @@
     </section>
     <!-- tablet end -->
     <!-- desktop start -->
-    <section class="hidden xl:block mt-5">
+    <section class="hidden h-screen xl:block mt-5">
       <form @submit.prevent="submitHandler">
         <Input
           type="email"
@@ -102,7 +102,7 @@ const submitHandler = async () => {
           },
         }
       );
-      await store.reset;
+      await store.reset();
       toast.success(response.data.message, {
         onClose: () => {
           router.push("/login");

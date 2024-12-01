@@ -1,5 +1,10 @@
 <template>
   <main class="p-8 xl:h-screen">
+    <Button
+      @click="backHandler"
+      class="mb-4"
+      >⬅</Button
+    >
     <h1 class="text-center font-secondary font-semibold mb-4 text-xl">
       Model {{ route.params.no }}
     </h1>
@@ -19,12 +24,16 @@
           >Soal {{ index + 1 }}</RouterLink
         >
       </div>
+      <div v-else>
+        <p class="font-primary text-center">Soal tidak ada</p>
+      </div>
     </section>
     <!-- mobile end -->
   </main>
 </template>
 
 <script setup>
+import Button from "@/components/Button.vue";
 import { useUserStore } from "@/stores/user";
 import axios from "axios";
 import { onMounted, ref } from "vue";
@@ -37,6 +46,10 @@ const store = useUserStore();
 const toast = useToast();
 
 const listSoal = ref([]);
+
+const backHandler = () => {
+  router.back();
+};
 
 const fetchSoal = async () => {
   try {
