@@ -15,6 +15,7 @@ import ListSoalView from "@/views/soal/edit/soal-model/ListSoalView.vue";
 import IdEditSoalView from "@/views/soal/edit/id/IdEditSoalView.vue";
 import ListHapusSoalModelView from "@/views/soal/hapus/soal-model/ListHapusSoalModelView.vue";
 import IdHapusSoalView from "@/views/soal/hapus/id/IdHapusSoalView.vue";
+import UserProfilViews from "@/views/user/profil/UserProfilViews.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
           path: "",
           name: "home",
           component: HomeView,
+        },
+        {
+          path: "profil",
+          name: "user-profil",
+          component: UserProfilViews,
         },
       ],
     },

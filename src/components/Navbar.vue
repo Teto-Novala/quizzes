@@ -84,6 +84,12 @@
     >
       Profil
     </button>
+    <button
+      @click="logOutHandler"
+      class="flex-1 hover:underline w-full"
+    >
+      Log out
+    </button>
   </div>
   <!-- mobile end -->
 
@@ -169,7 +175,8 @@ const routeHandler = () => {
     isActiveToggle.value = false;
     router.push("/tutor/profil");
   } else {
-    return "/profil";
+    isActiveToggle.value = false;
+    router.push("/profil");
   }
 };
 
@@ -188,5 +195,10 @@ const editHandler = () => {
 const hapusHandler = () => {
   isActiveToggle.value = false;
   router.push("/tutor/hapussoal");
+};
+
+const logOutHandler = () => {
+  store.reset();
+  router.push("/login");
 };
 </script>
