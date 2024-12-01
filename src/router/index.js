@@ -18,6 +18,7 @@ import IdHapusSoalView from "@/views/soal/hapus/id/IdHapusSoalView.vue";
 import UserProfilViews from "@/views/user/profil/UserProfilViews.vue";
 import UserEditProfilView from "@/views/user/profil/edit/UserEditProfilView.vue";
 import UjianView from "@/views/user/ujian/UjianView.vue";
+import SoalPelajaranView from "@/views/user/ujian/soal/SoalPelajaranView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +46,11 @@ const router = createRouter({
           path: "ujian",
           name: "ujian",
           component: UjianView,
+        },
+        {
+          path: "ujian/:pelajaran",
+          name: "soal-pelajaran",
+          component: SoalPelajaranView,
         },
       ],
     },

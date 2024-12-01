@@ -117,7 +117,7 @@
       class="w-1/3 object-cover object-center"
     />
     <div
-      v-if="store.data.user.role === 'user'"
+      v-if="Object.keys(store.data).length && store.data.user.role === 'user'"
       class="flex items-center gap-x-3"
     >
       <RouterLink
@@ -199,10 +199,12 @@
 import { RouterLink, useRouter } from "vue-router";
 import Button from "./Button.vue";
 import { useUserStore } from "@/stores/user";
-import { ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
+import { useToast } from "vue-toastification";
 
 const store = useUserStore();
 const router = useRouter();
+const toast = useToast();
 
 const isActiveSoal = ref(false);
 const isActiveToggle = ref(false);
@@ -265,4 +267,14 @@ const ujianHandler = () => {
   isActiveToggle.value = false;
   router.push("/ujian");
 };
+
+onBeforeMount(() => {
+  if (!Object.keys(store.data).length) {
+    toast.error("Anda Belum Login", {
+      onClose: () => {
+        router.push("/login");
+      },
+    });
+  }
+});
 </script>
