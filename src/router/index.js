@@ -13,6 +13,8 @@ import EditProfileView from "@/views/profil/edit/EditProfileView.vue";
 import DeleteProfilView from "@/views/profil/delete/DeleteProfilView.vue";
 import ListSoalView from "@/views/soal/edit/soal-model/ListSoalView.vue";
 import IdEditSoalView from "@/views/soal/edit/id/IdEditSoalView.vue";
+import ListHapusSoalModelView from "@/views/soal/hapus/soal-model/ListHapusSoalModelView.vue";
+import IdHapusSoalView from "@/views/soal/hapus/id/IdHapusSoalView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -99,6 +101,22 @@ const router = createRouter({
           path: ":no/soal/:nosoal/:id",
           name: "edit-soal-id",
           component: IdEditSoalView,
+        },
+      ],
+    },
+    {
+      path: "/tutor/hapussoal/model",
+      component: WithNavSide,
+      children: [
+        {
+          path: ":no",
+          name: "hapus-list-soal",
+          component: ListHapusSoalModelView,
+        },
+        {
+          path: ":no/soal/:nosoal/:id",
+          name: "hapus-soal-id",
+          component: IdHapusSoalView,
         },
       ],
     },
