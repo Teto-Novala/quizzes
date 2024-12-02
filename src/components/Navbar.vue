@@ -157,11 +157,11 @@
     <img
       src="/src/assets/images/components/logo.svg"
       alt="logo"
-      class="w-1/6 object-cover object-center"
+      class="w-[10rem] object-cover object-center"
     />
     <div
       v-if="store.data.user.role === 'user'"
-      class="flex items-center gap-x-6"
+      class="flex justify-center items-center gap-x-6"
     >
       <RouterLink
         class="transition-all hover:underline"
@@ -201,10 +201,12 @@ import Button from "./Button.vue";
 import { useUserStore } from "@/stores/user";
 import { onBeforeMount, onMounted, ref } from "vue";
 import { useToast } from "vue-toastification";
+import { useSoalStore } from "@/stores/soal";
 
 const store = useUserStore();
 const router = useRouter();
 const toast = useToast();
+const soalStore = useSoalStore();
 
 const isActiveSoal = ref(false);
 const isActiveToggle = ref(false);
@@ -255,6 +257,7 @@ const hapusHandler = () => {
 
 const logOutHandler = () => {
   store.reset();
+  soalStore.reset();
   router.push("/login");
 };
 

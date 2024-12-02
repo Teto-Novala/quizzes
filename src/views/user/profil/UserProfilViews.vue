@@ -72,6 +72,7 @@
 
 <script setup>
 import Button from "@/components/Button.vue";
+import { useSoalStore } from "@/stores/soal";
 import { useUserStore } from "@/stores/user";
 import useVuelidate from "@vuelidate/core";
 import { email, helpers, required } from "@vuelidate/validators";
@@ -84,6 +85,7 @@ import { useToast } from "vue-toastification";
 const store = useUserStore();
 const router = useRouter();
 const toast = useToast();
+const soalStore = useSoalStore();
 
 const isHapus = ref(false);
 
@@ -149,6 +151,7 @@ const hapusHandler = async () => {
 
 const logOutHandler = () => {
   store.reset();
+  soalStore.reset();
   router.push("/login");
 };
 

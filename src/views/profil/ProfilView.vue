@@ -64,6 +64,7 @@
 
 <script setup>
 import Button from "@/components/Button.vue";
+import { useSoalStore } from "@/stores/soal";
 import { useUserStore } from "@/stores/user";
 import { onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
@@ -72,9 +73,11 @@ import { useToast } from "vue-toastification";
 const store = useUserStore();
 const toast = useToast();
 const router = useRouter();
+const soalStore = useSoalStore();
 
 const logOutHandler = async () => {
   store.reset();
+  soalStore.reset();
   router.push("/login");
 };
 

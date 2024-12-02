@@ -85,6 +85,7 @@
 </template>
 
 <script setup>
+import { useSoalStore } from "@/stores/soal";
 import { useUserStore } from "@/stores/user";
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -92,6 +93,7 @@ import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
 const store = useUserStore();
+const soalStore = useSoalStore();
 
 const isPengaturan = ref(false);
 const isSoal = ref(false);
@@ -120,6 +122,7 @@ const hapusSoalHandler = () => {
 
 const logoutHandler = () => {
   store.reset();
+  soalStore.reset();
   router.push("/login");
 };
 </script>
